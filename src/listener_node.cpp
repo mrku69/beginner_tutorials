@@ -39,7 +39,8 @@ int main(int argc, char **argv) {
   if (rosRet == true) {
     ROS_INFO_STREAM("textService is available");
   } else {
-    // If we don't see a service for 30 seconds, warn the user that no service was seen
+    // If we don't see a service for 30 seconds, warn the user that no
+    //  service was seen
     ROS_WARN_STREAM("Timeout waiting for textService");
   }
 

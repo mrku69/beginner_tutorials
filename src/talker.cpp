@@ -20,7 +20,6 @@ Talker::Talker()
  */
 bool Talker::changeText(beginner_tutorials::talkerService::Request &req,
                         beginner_tutorials::talkerService::Response &resp) {
-
   text = req.text;
   resp.resp = "GOOD";
 
