@@ -40,7 +40,7 @@ $ catkin_make
 ```
 You should now see a beginner_tutorials directory in `catkin_ws/build`. 
 
-## Run Subscriber
+## Run Subscriber using rosrun
 To run this package, first ensure that a roscore is running. Open a new terminal and run `roscore`. Once roscore is up and running, open another terminal and change directories into the catkin_ws from above.
 ```
 $ roscd beginner_tutorials
@@ -53,7 +53,7 @@ $ rosrun beginner_tutorials listener
 ```
 You shouldn't see anything because the publisher has not been started yet.
 
-## Run Publisher
+## Run Publisher using rosrun
 Open a new terminal and change directories into the catkin_ws from above.
 ```
 $ roscd beginner_tutorials
@@ -64,4 +64,33 @@ Now, run the talker node:
 ```
 $ rosrun beginner_tutorials talker
 ```
-You should see printouts of the message being published in the talker window. You should also see printouts of what the listener is hearing on the chatter topic. 
+You should see printouts of the message being published in the talker window. You should also see printouts of what the listener is hearing on the chatter topic. You can also pass in an argument to define the publish frequency of the talker node by adding an integer after the previous command (as below).
+```
+$ rosrun beginner_tutorials talker 10
+```
+The above command runs the talker node and sets the publish frequency to 10 Hz.
+
+## Run Publisher/Subscriber using roslaunch
+Open a new terminal and make sure roscore is running.
+```
+$ roscore
+```
+Open a separate terminal and change directories into your catkin workspace. Source the directory and run the launch file as follows:
+```
+$ cd <PATH_TO_YOUR_DIRECTORY>/catkin_ws
+$ source devel/setup.bash
+$ roslaunch beginner_tutorials service.launch
+```
+Two terminals will open--one running the talker node and the other running the listener node as before. As a default, you should see `"Initial Text"` being printed in both terminals with message counters. Note that you can pass in an argument to the launch file to change the frequency of the messages being published. To change the frequency to 10 Hz so, use the following command:
+```
+$ roslaunch beginner_tutorials service.launch freq:=10
+```
+
+## Calling the textService using rosservice call
+With the publisher and subscriber running (either via launch file or rosrun), we can change the text being published between nodes by calling a rosservice defined in the talker node. Open a new terminal and change directories into your catkin workspace. Source the directory and call the service as follows:
+```
+$ cd <PATH_TO_YOUR_DIRECTORY>/catkin_ws
+$ source devel/setup.bash
+$ rosservice call /textService "Other text"
+```
+What this does is call the `textService` service with the argument "Other text". That argument is used to change the text that is sent via the talker publisher over the `chatter` topic. If the service executes properly, you should now see "Other text" (or whatever string you pass as an argument) being published and heard in the two terminals running the publisher and subscriber, respectively. 
