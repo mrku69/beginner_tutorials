@@ -1,5 +1,6 @@
 <launch>
     <arg name="freq" default="1"/>
+    <arg name="record_talker" default="false"/>
 
     <node
         pkg="beginner_tutorials"
@@ -15,4 +16,11 @@
         output="screen"
         launch-prefix="gnome-terminal --command"
     />
+    <node
+    	pkg="rosbag"
+    	name="rosbag_record_talker"
+    	type="record"
+    	args="-a -O talker.bag"
+    	if="$(arg record_talker)"
+	/>
 </launch>

@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
   // Wait until the talker node is started and service becomes active
   // -If it doesn't come active within 30 seconds, issue a warning (non-fatal)
   bool rosRet;
-  rosRet = ros::service::waitForService("textService", 30000);
+  rosRet = ros::service::waitForService("textService", 1000);
 
   // If we see the service, let the user know the service is available
   if (rosRet == true) {
