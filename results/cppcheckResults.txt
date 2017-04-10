@@ -1,12 +1,16 @@
-$ cppcheck ./src/
+$ cppcheck ./src/ ./test/
 
 
 Checking src/listener.cpp...
-1/4 files checked 8% done
+1/6 files checked 5% done
 Checking src/listener_node.cpp...
-2/4 files checked 47% done
+2/6 files checked 30% done
 Checking src/talker.cpp...
-3/4 files checked 60% done
+3/6 files checked 39% done
 Checking src/talker_node.cpp...
-4/4 files checked 100% done
+4/6 files checked 71% done
+Checking test/main.cpp...
+5/6 files checked 75% done
+Checking test/talkerTest.cpp...
+6/6 files checked 100% done
 

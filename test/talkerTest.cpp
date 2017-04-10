@@ -23,8 +23,10 @@ TEST(TestSuite, testTransform) {
   tf::TransformListener listener;
   tf::StampedTransform transform;
   try {
-    listener.waitForTransform("/world", "/talk", ros::Time(0), ros::Duration(10.0) );
-    listener.lookupTransform("/world", "/talk", ros::Time(0), transform);
+    listener.waitForTransform("/world", "/talk",
+        ros::Time(0), ros::Duration(10.0) );
+    listener.lookupTransform("/world", "/talk",
+        ros::Time(0), transform);
 
     // Check the origin is correct:
     EXPECT_EQ(2, transform.getOrigin().x());
@@ -36,12 +38,9 @@ TEST(TestSuite, testTransform) {
     EXPECT_EQ(0, transform.getRotation().y());
     EXPECT_EQ(0, transform.getRotation().z());
     EXPECT_EQ(0, transform.getRotation().w());
-
   } catch (tf::TransformException ex) {
     ADD_FAILURE();
   }
-
-
 }
 
 /**
@@ -51,7 +50,8 @@ TEST(TestSuite, testTextServiceExists) {
   ros::NodeHandle n;
 
   // Register client to "textService" service
-  ros::ServiceClient client = n.serviceClient<beginner_tutorials::textService>("textService");
+  ros::ServiceClient client =
+      n.serviceClient<beginner_tutorials::textService>("textService");
 
   // Test that the service exists after 1 second
   bool exists(client.waitForExistence(ros::Duration(1)));
@@ -65,7 +65,8 @@ TEST(TestSuite, testTextServiceSuccess) {
   ros::NodeHandle n;
 
   // Register client to "textService" service
-  ros::ServiceClient client = n.serviceClient<beginner_tutorials::textService>("textService");
+  ros::ServiceClient client =
+      n.serviceClient<beginner_tutorials::textService>("textService");
 
   // Call service and test response:
   beginner_tutorials::textService srv;
