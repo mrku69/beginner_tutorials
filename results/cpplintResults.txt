@@ -1,6 +1,10 @@
-$ ../../cpplint.py ./src/*.cpp
+$ ../../../../cpplint.py ./src/*.cpp
+
 
 Done processing ./src/listener.cpp
+Done processing ./src/listener_node.cpp
 Done processing ./src/talker.cpp
+Done processing ./src/talker_node.cpp
 Total errors found: 0
+
 
