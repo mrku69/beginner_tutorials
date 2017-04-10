@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
 	std_msgs 
 	genmsg
 	message_generation
+	tf
 )
 
 ## Generate added messages and services

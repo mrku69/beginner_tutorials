@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
+#include <tf/transform_broadcaster.h>
 #include <string>
 #include <sstream>
 #include "talker.hpp"
@@ -49,6 +50,10 @@ int main(int argc, char **argv) {
   // Set up the publisher rate to the desired frequency
   ros::Rate loop_rate(frequency);
 
+  // TF Broadcaster and TF containers:
+  tf::TransformBroadcaster tfBroadcaster;
+  tf::Transform transform;
+
   // Initialize a counter for the number of messages we've sent
   //   so we can create a unique string
   int count = 0;
@@ -66,6 +71,15 @@ int main(int argc, char **argv) {
 
     // Publish the string to anyone listening
     chatter_pub.publish(msg);
+
+    // Set our transform:
+    transform.setOrigin(tf::Vector3(2.0, 2.0, 0.0));
+    transform.setRotation(tf::Quaternion(1, 0, 0, 0));
+
+    // Broadcast our transform
+    //  (arg1 = transform, arg2 = timestamp, arg3 = parent TF, arg4 = TF name)
+    tfBroadcaster.sendTransform(
+        tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
 
     // "Spin" a callback in case we set up any callbacks
     ros::spinOnce();
