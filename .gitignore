@@ -1,0 +1,8 @@
+
+# Ignore temporary files
+*~
+
+# Ignore .project file
+.project
+
+
